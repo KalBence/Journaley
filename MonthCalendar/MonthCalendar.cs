@@ -467,8 +467,8 @@ namespace Pabo.Calendar
 			m_month.DaySelected+=new DaySelectedEventHandler(m_month_DaySelected); 
 			m_month.DayDeselected+=new DaySelectedEventHandler(m_month_DayDeselected); 
 			m_month.ColorChanged+=new MonthColorEventHandler(m_month_ColorChanged);
-			m_month.BorderStyleChanged+=new MonthBorderStyleEventHandler(m_month_BorderStyleChanged);
-			m_month.PropertyChanged+=new MonthPropertyEventHandler(m_month_PropertyChanged);
+			m_month.BorderStyleChanged+=new MonthBorderStyleEventHandler(M_month_BorderStyleChanged);
+			m_month.PropertyChanged+=new MonthPropertyEventHandler(M_month_PropertyChanged);
             m_month.BeforeDaySelected += new DayStateChangedEventHandler(m_month_BeforeDaySelected);
             m_month.BeforeDayDeselected += new DayStateChangedEventHandler(m_month_BeforeDayDeselected); 
 
@@ -476,20 +476,20 @@ namespace Pabo.Calendar
 			m_footer.DoubleClick +=new ClickEventHandler(m_footer_DoubleClick);
 			m_footer.PropertyChanged +=new FooterPropertyEventHandler(m_footer_PropertyChanged);
 			
-			m_weeknumber.PropertyChanged+=new WeeknumberPropertyEventHandler(m_weeknumber_PropertyChanged); 
-			m_weeknumber.Click+=new WeeknumberClickEventHandler(m_weeknumber_Click); 
-			m_weeknumber.DoubleClick+=new WeeknumberClickEventHandler(m_weeknumber_DoubleClick); 	
+			m_weeknumber.PropertyChanged+=new WeeknumberPropertyEventHandler(M_weeknumber_PropertyChanged); 
+			m_weeknumber.Click+=new WeeknumberClickEventHandler(M_weeknumber_Click); 
+			m_weeknumber.DoubleClick+=new WeeknumberClickEventHandler(M_weeknumber_DoubleClick); 	
 			
 			m_weekday.PropertyChanged+=new WeekdayPropertyEventHandler(m_weekday_PropertyChanged); 
-			m_weekday.Click+=new WeekdayClickEventHandler(m_weekday_Click); 	
+			m_weekday.Click+=new WeekdayClickEventHandler(M_weekday_Click); 	
 			m_weekday.DoubleClick +=new WeekdayClickEventHandler(m_weekday_DoubleClick);		
 			
 			m_header.PropertyChanged+=new HeaderPropertyEventHandler(m_header_PropertyChanged); 
 			m_header.Click +=new ClickEventHandler(m_header_Click);	
-			m_header.DoubleClick +=new ClickEventHandler(m_header_DoubleClick);	
-			m_header.PrevMonthButtonClick +=new EventHandler(m_header_PrevMonthButtonClick);		
+			m_header.DoubleClick +=new ClickEventHandler(M_header_DoubleClick);	
+			m_header.PrevMonthButtonClick +=new EventHandler(M_header_PrevMonthButtonClick);		
 			m_header.NextMonthButtonClick+=new EventHandler(m_header_NextMonthButtonClick); 		
-			m_header.PrevYearButtonClick +=new EventHandler(m_header_PrevYearButtonClick);		
+			m_header.PrevYearButtonClick +=new EventHandler(M_header_PrevYearButtonClick);		
 			m_header.NextYearButtonClick+=new EventHandler(m_header_NextYearButtonClick); 		
 			
 
@@ -568,8 +568,8 @@ namespace Pabo.Calendar
 				m_month.DaySelected-=new DaySelectedEventHandler(m_month_DaySelected);
 				m_month.DayDeselected-=new DaySelectedEventHandler(m_month_DayDeselected);
 				m_month.ColorChanged-=new MonthColorEventHandler(m_month_ColorChanged);
-				m_month.BorderStyleChanged-=new MonthBorderStyleEventHandler(m_month_BorderStyleChanged);
-				m_month.PropertyChanged-=new MonthPropertyEventHandler(m_month_PropertyChanged);
+				m_month.BorderStyleChanged-=new MonthBorderStyleEventHandler(M_month_BorderStyleChanged);
+				m_month.PropertyChanged-=new MonthPropertyEventHandler(M_month_PropertyChanged);
                 m_month.BeforeDaySelected -= new DayStateChangedEventHandler(m_month_BeforeDaySelected);
                 m_month.BeforeDayDeselected -= new DayStateChangedEventHandler(m_month_BeforeDayDeselected); 
 
@@ -578,20 +578,20 @@ namespace Pabo.Calendar
 				m_footer.DoubleClick -=new ClickEventHandler(m_footer_DoubleClick);
 				m_footer.PropertyChanged -=new FooterPropertyEventHandler(m_footer_PropertyChanged);
 				
-				m_weeknumber.PropertyChanged-=new WeeknumberPropertyEventHandler(m_weeknumber_PropertyChanged); 
-				m_weeknumber.Click-=new WeeknumberClickEventHandler(m_weeknumber_Click); 
-				m_weeknumber.DoubleClick-=new WeeknumberClickEventHandler(m_weeknumber_DoubleClick); 	
+				m_weeknumber.PropertyChanged-=new WeeknumberPropertyEventHandler(M_weeknumber_PropertyChanged); 
+				m_weeknumber.Click-=new WeeknumberClickEventHandler(M_weeknumber_Click); 
+				m_weeknumber.DoubleClick-=new WeeknumberClickEventHandler(M_weeknumber_DoubleClick); 	
 				
 				m_weekday.PropertyChanged-=new WeekdayPropertyEventHandler(m_weekday_PropertyChanged); 
-				m_weekday.Click-=new WeekdayClickEventHandler(m_weekday_Click); 	
+				m_weekday.Click-=new WeekdayClickEventHandler(M_weekday_Click); 	
 				m_weekday.DoubleClick -=new WeekdayClickEventHandler(m_weekday_DoubleClick);		
 				
 				m_header.PropertyChanged-=new HeaderPropertyEventHandler(m_header_PropertyChanged); 
 				m_header.Click -=new ClickEventHandler(m_header_Click);	
-				m_header.DoubleClick -=new ClickEventHandler(m_header_DoubleClick);	
-				m_header.PrevMonthButtonClick -=new EventHandler(m_header_PrevMonthButtonClick);		
+				m_header.DoubleClick -=new ClickEventHandler(M_header_DoubleClick);	
+				m_header.PrevMonthButtonClick -=new EventHandler(M_header_PrevMonthButtonClick);		
 				m_header.NextMonthButtonClick-=new EventHandler(m_header_NextMonthButtonClick); 		
-				m_header.PrevYearButtonClick -=new EventHandler(m_header_PrevYearButtonClick);		
+				m_header.PrevYearButtonClick -=new EventHandler(M_header_PrevYearButtonClick);		
 				m_header.NextYearButtonClick-=new EventHandler(m_header_NextYearButtonClick); 		
 			
 	
@@ -1291,9 +1291,8 @@ namespace Pabo.Calendar
 						}
 						case mcCalendarRegion.Weekdays:
 						{
-							if (WeekdaysMouseLeave!=null)
-								WeekdaysMouseLeave(this,new EventArgs());
-							break;
+                                WeekdaysMouseLeave?.Invoke(this, new EventArgs());
+                                break;
 						}
 						case mcCalendarRegion.Weeknumbers:
 						{
@@ -1326,9 +1325,8 @@ namespace Pabo.Calendar
 						}
 						case mcCalendarRegion.Weekdays:
 						{
-							if (WeekdaysMouseEnter!=null)
-								WeekdaysMouseEnter(this,new EventArgs());
-							break;
+                                WeekdaysMouseEnter?.Invoke(this, new EventArgs());
+                                break;
 						}
 						case mcCalendarRegion.Weeknumbers:
 						{
@@ -1338,9 +1336,8 @@ namespace Pabo.Calendar
 						}
 						case mcCalendarRegion.Footer:
 						{
-							if (FooterMouseEnter!=null)
-								FooterMouseEnter(this,new EventArgs());
-							break;
+                                FooterMouseEnter?.Invoke(this, new EventArgs());
+                                break;
 						}
 					}
 				}
@@ -1409,8 +1406,7 @@ namespace Pabo.Calendar
                 if (m_keyboardEnabled != value)
                 {
                     m_keyboardEnabled = value;
-                    if (KeyboardEnabledChanged != null)
-                        KeyboardEnabledChanged(this, new EventArgs()); 
+                    KeyboardEnabledChanged?.Invoke(this, new EventArgs());
 
                 }
             }
@@ -1432,10 +1428,9 @@ namespace Pabo.Calendar
 				{
 					m_showTrailing = value;
 					if (value == false)
-						SelectTrailingDates = false; 
-					if (ShowTrailingChanged!=null)
-						ShowTrailingChanged(this,new EventArgs()); 
-					Invalidate();			
+						SelectTrailingDates = false;
+                    ShowTrailingChanged?.Invoke(this, new EventArgs());
+                    Invalidate();			
 				}
 			}
 		}
@@ -1561,7 +1556,7 @@ namespace Pabo.Calendar
 				{
 					m_showFocus = value;
 					if (this.ShowFocusChanged!=null)
-						this.ShowFocusChanged(this,new EventArgs());
+                        ShowFocusChanged(this,new EventArgs());
 					Invalidate();
 				}
 			}
@@ -1584,7 +1579,7 @@ namespace Pabo.Calendar
 				{
 					m_selectTrailing = value;
 					if (this.SelectTrailingChanged!=null)
-						this.SelectTrailingChanged(this,new EventArgs());
+                        SelectTrailingChanged(this,new EventArgs());
 					Invalidate();
 				}
 			}
@@ -1606,7 +1601,7 @@ namespace Pabo.Calendar
 				{
 					m_useTheme = value;
 					if (this.UseThemeChanged!=null)
-						this.UseThemeChanged(this,new EventArgs());
+                        UseThemeChanged(this,new EventArgs());
                     if (m_useTheme)
                         GetThemeColors();
                     else
@@ -1658,7 +1653,7 @@ namespace Pabo.Calendar
 					//	m_hook.RemoveKeyboardHook(); 
 					
 					if (this.ExtendedSelectionKeyChanged!=null)
-						this.ExtendedSelectionKeyChanged(this,new EventArgs());
+                        ExtendedSelectionKeyChanged(this,new EventArgs());
 				
 				}
 			}
@@ -2615,13 +2610,13 @@ namespace Pabo.Calendar
 				this.HeaderClick(this,e);
 		}
 
-		private void m_header_DoubleClick(object sender, ClickEventArgs e)
+		private void M_header_DoubleClick(object sender, ClickEventArgs e)
 		{
 			if (this.HeaderDoubleClick!=null)
 				this.HeaderDoubleClick(this,e);
 		}
 
-		private void m_header_PrevMonthButtonClick(object sender, EventArgs e)
+		private void M_header_PrevMonthButtonClick(object sender, EventArgs e)
 		{
             ChangeMonth(-1);
 		}
@@ -2661,7 +2656,7 @@ namespace Pabo.Calendar
 
         }
 		
-		private void m_header_PrevYearButtonClick(object sender, EventArgs e)
+		private void M_header_PrevYearButtonClick(object sender, EventArgs e)
 		{
             ChangeMonth(-12);
 			
@@ -2672,7 +2667,7 @@ namespace Pabo.Calendar
             ChangeMonth(12);	
         }
 
-		private void m_weekday_Click(object sender, WeekdayClickEventArgs e)
+		private void M_weekday_Click(object sender, WeekdayClickEventArgs e)
 		{
 			if (this.WeekdayClick!=null)
 				this.WeekdayClick(this,e); 
@@ -2684,13 +2679,13 @@ namespace Pabo.Calendar
 				this.WeekdayDoubleClick(this,e); 
 		}
 
-		private void m_weeknumber_DoubleClick(object sender, WeeknumberClickEventArgs e)
+		private void M_weeknumber_DoubleClick(object sender, WeeknumberClickEventArgs e)
 		{
 			if (this.WeeknumberDoubleClick!=null)
 				this.WeeknumberDoubleClick(this,e); 
 		}
 
-		private void m_weeknumber_Click(object sender, WeeknumberClickEventArgs e)
+		private void M_weeknumber_Click(object sender, WeeknumberClickEventArgs e)
 		{
 			if (this.WeeknumberClick!=null)
 				this.WeeknumberClick(this,e); 
@@ -2702,7 +2697,7 @@ namespace Pabo.Calendar
 				this.FooterPropertyChanged(this,e); 
 		}
 		
-		private void m_weeknumber_PropertyChanged(object sender, WeeknumberPropertyEventArgs e)
+		private void M_weeknumber_PropertyChanged(object sender, WeeknumberPropertyEventArgs e)
 		{
 			if (this.WeeknumberPropertyChanged!=null)
 				this.WeeknumberPropertyChanged(this,e); 
@@ -2720,7 +2715,7 @@ namespace Pabo.Calendar
 				this.HeaderPropertyChanged(this,e); 
 		}
 
-		private void m_month_PropertyChanged(object sender, MonthPropertyEventArgs e)
+		private void M_month_PropertyChanged(object sender, MonthPropertyEventArgs e)
 		{
 			if (this.MonthPropertyChanged!=null)
 				this.MonthPropertyChanged(this,e); 
@@ -2732,7 +2727,7 @@ namespace Pabo.Calendar
 				this.MonthColorChanged(this,e); 
 		}
 
-		private void m_month_BorderStyleChanged(object sender, MonthBorderStyleEventArgs e)
+		private void M_month_BorderStyleChanged(object sender, MonthBorderStyleEventArgs e)
 		{
 			if (this.MonthBorderStyleChanged!=null)
 				this.MonthBorderStyleChanged(this,e); 

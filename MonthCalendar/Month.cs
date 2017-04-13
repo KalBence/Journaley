@@ -164,12 +164,14 @@ namespace Pabo.Calendar
 			m_days = new Day[42];
 			for (int i = 0;i<42;i++)
 			{
-				m_days[i] = new Day();
-				m_days[i].Month = this;
-				m_days[i].Calendar = m_calendar;
+                m_days[i] = new Day()
+                {
+                    Month = this,
+                    Calendar = m_calendar
+                };
             }
 
-			m_colors = new MonthColors(this); 
+            m_colors = new MonthColors(this); 
 			m_borderStyles = new MonthBorderStyles(this); 
 			m_padding = new MonthPadding(this);
             m_transparency = new TransparencyCollection(this);
@@ -316,9 +318,8 @@ namespace Pabo.Calendar
 				if (m_imageClick!=value)
 				{
 					m_imageClick = value;
-					if (PropertyChanged!=null)
-						PropertyChanged(this,new MonthPropertyEventArgs(mcMonthProperty.ImageClick)); 
-					Calendar.Invalidate(); 
+                    PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.ImageClick));
+                    Calendar.Invalidate(); 
 				}
 			}
 		}
@@ -1285,8 +1286,10 @@ namespace Pabo.Calendar
                         {
                             // day is not user drawn
                             m_days[i].UserDrawn = false;
-                            DateItem dayInfo = new DateItem();
-                            dayInfo.Calendar = m_calendar;
+                            DateItem dayInfo = new DateItem()
+                            {
+                                Calendar = m_calendar
+                            };
                             DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
                             DayQueryInfo(this, info);
                             if (!info.OwnerDraw)

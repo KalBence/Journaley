@@ -42,12 +42,12 @@ namespace Pabo.Calendar
 		Align = 0, MonthSelectors,YearSelectors, ShowMonth, Text , BackColor1, Font,
 		TextColor, MonthContextMenu, BackColor2, GradientMode }
 
-    internal enum mcButtonState
+    internal enum McButtonState
     {
         Normal = 0, Hot, Pushed, Inactive 
     }
 
-    internal enum mcHeaderButtons
+    internal enum McHeaderButtons
     {
         PreviousMonth=0 , PreviousYear, NextMonth, NextYear 
     }
@@ -87,10 +87,10 @@ namespace Pabo.Calendar
 		private Rectangle m_prevYearBtnRect;
 		private Rectangle m_textRect;
 
-		private mcButtonState m_prevBtnState;
-		private mcButtonState m_nextBtnState;
-		private mcButtonState m_prevYearBtnState;
-		private mcButtonState m_nextYearBtnState;
+		private McButtonState m_prevBtnState;
+		private McButtonState m_nextBtnState;
+		private McButtonState m_prevYearBtnState;
+		private McButtonState m_nextYearBtnState;
 
 		private string m_text;
 		private mcTextAlign m_align;
@@ -136,10 +136,10 @@ namespace Pabo.Calendar
 			m_text = "";
             m_contextMenu = true;
 			m_align = mcTextAlign.Center; 
-			m_prevBtnState = mcButtonState.Normal;
-			m_nextBtnState = mcButtonState.Normal;
-			m_prevYearBtnState = mcButtonState.Normal;
-			m_nextYearBtnState = mcButtonState.Normal;
+			m_prevBtnState = McButtonState.Normal;
+			m_nextBtnState = McButtonState.Normal;
+			m_prevYearBtnState = McButtonState.Normal;
+			m_nextYearBtnState = McButtonState.Normal;
 			
 			// load images
 			m_prevYear = GetEmbeddedImage("prev_year.bmp");
@@ -298,18 +298,18 @@ namespace Pabo.Calendar
 				{
 					if (m_monthSelector)
 					{
-						if ( (leftBtnRgn.IsVisible(mouseLocation)) &&  (m_prevBtnState!=mcButtonState.Inactive) &&
-							(m_prevBtnState!=mcButtonState.Pushed) )
+						if ( (leftBtnRgn.IsVisible(mouseLocation)) &&  (m_prevBtnState!=McButtonState.Inactive) &&
+							(m_prevBtnState!=McButtonState.Pushed) )
 						{
-							m_prevBtnState = mcButtonState.Pushed;
+							m_prevBtnState = McButtonState.Pushed;
 							if (this.PrevMonthButtonClick!=null)
 								this.PrevMonthButtonClick(this,new EventArgs());			
 							btnClick = true;
 						}
-						if ( (rightBtnRgn.IsVisible(mouseLocation)) && (m_nextBtnState!=mcButtonState.Inactive) &&
-							(m_nextBtnState!=mcButtonState.Pushed) )
+						if ( (rightBtnRgn.IsVisible(mouseLocation)) && (m_nextBtnState!=McButtonState.Inactive) &&
+							(m_nextBtnState!=McButtonState.Pushed) )
 						{
-							m_nextBtnState = mcButtonState.Pushed;
+							m_nextBtnState = McButtonState.Pushed;
 							if (this.NextMonthButtonClick!=null)
 								this.NextMonthButtonClick(this,new EventArgs());
 							btnClick = true;
@@ -317,18 +317,18 @@ namespace Pabo.Calendar
 					}
 					if (m_yearSelector)
 					{
-						if ( (leftYearBtnRgn.IsVisible(mouseLocation)) &&  (m_prevYearBtnState!=mcButtonState.Inactive) &&
-							(m_prevYearBtnState!=mcButtonState.Pushed) )
+						if ( (leftYearBtnRgn.IsVisible(mouseLocation)) &&  (m_prevYearBtnState!=McButtonState.Inactive) &&
+							(m_prevYearBtnState!=McButtonState.Pushed) )
 						{
-							m_prevYearBtnState = mcButtonState.Pushed;
+							m_prevYearBtnState = McButtonState.Pushed;
 							if (this.PrevYearButtonClick!=null)
-								this.PrevYearButtonClick(this,new EventArgs());			
+                                PrevYearButtonClick(this,new EventArgs());			
 							btnClick = true;
 						}
-						if ( (rightYearBtnRgn.IsVisible(mouseLocation)) && (m_nextYearBtnState!=mcButtonState.Inactive) &&
-							(m_nextYearBtnState!=mcButtonState.Pushed) )
+						if ( (rightYearBtnRgn.IsVisible(mouseLocation)) && (m_nextYearBtnState!=McButtonState.Inactive) &&
+							(m_nextYearBtnState!=McButtonState.Pushed) )
 						{
-							m_nextYearBtnState = mcButtonState.Pushed;
+							m_nextYearBtnState = McButtonState.Pushed;
 							if (this.NextYearButtonClick!=null)
 								this.NextYearButtonClick(this,new EventArgs());
 							btnClick = true;
@@ -366,10 +366,10 @@ namespace Pabo.Calendar
 		internal void MouseUp()
 		{
 			// if mouse button is released no button should be pushed
-			if (m_prevBtnState!=mcButtonState.Inactive) m_prevBtnState = mcButtonState.Normal;
-			if (m_nextBtnState!=mcButtonState.Inactive) m_nextBtnState = mcButtonState.Normal;
-			if (m_prevYearBtnState!=mcButtonState.Inactive) m_prevYearBtnState = mcButtonState.Normal;
-			if (m_nextYearBtnState!=mcButtonState.Inactive) m_nextYearBtnState = mcButtonState.Normal;
+			if (m_prevBtnState!=McButtonState.Inactive) m_prevBtnState = McButtonState.Normal;
+			if (m_nextBtnState!=McButtonState.Inactive) m_nextBtnState = McButtonState.Normal;
+			if (m_prevYearBtnState!=McButtonState.Inactive) m_prevYearBtnState = McButtonState.Normal;
+			if (m_nextYearBtnState!=McButtonState.Inactive) m_nextYearBtnState = McButtonState.Normal;
 			
 			m_calendar.Invalidate();	
 		}
@@ -380,10 +380,10 @@ namespace Pabo.Calendar
 			Region nextBtnRgn = new Region(m_nextBtnRect);
 			Region prevYearBtnRgn = new Region(m_prevYearBtnRect);
 			Region nextYearBtnRgn = new Region(m_nextYearBtnRect);
-            mcButtonState oldPrevMonthState = m_prevBtnState;
-            mcButtonState oldNextMonthState = m_nextBtnState;
-            mcButtonState oldPrevYearState = m_prevYearBtnState;
-            mcButtonState oldNextYearState = m_nextYearBtnState;
+            McButtonState oldPrevMonthState = m_prevBtnState;
+            McButtonState oldNextMonthState = m_nextBtnState;
+            McButtonState oldPrevYearState = m_prevYearBtnState;
+            McButtonState oldNextYearState = m_nextYearBtnState;
 
 
 			if (m_monthSelector)
@@ -391,48 +391,48 @@ namespace Pabo.Calendar
 				// If not within left scroll button, make sure its not pushed
                 if (!prevBtnRgn.IsVisible(mouseLocation))
                 {
-                    if (m_prevBtnState != mcButtonState.Inactive) m_prevBtnState = mcButtonState.Normal;
+                    if (m_prevBtnState != McButtonState.Inactive) m_prevBtnState = McButtonState.Normal;
                 }
-                else if (m_prevBtnState != mcButtonState.Inactive)
-                    m_prevBtnState = mcButtonState.Hot;
+                else if (m_prevBtnState != McButtonState.Inactive)
+                    m_prevBtnState = McButtonState.Hot;
 
                 if (oldPrevMonthState != m_prevBtnState)
-                    DrawButton(m_calendar.CreateGraphics(),m_prevBtnState,mcHeaderButtons.PreviousMonth,m_prevBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(),m_prevBtnState,McHeaderButtons.PreviousMonth,m_prevBtnRect); 
                 // If not within right scroll button, make sure its not pushed
                 if (!nextBtnRgn.IsVisible(mouseLocation))
                 {
-                    if (m_nextBtnState != mcButtonState.Inactive) m_nextBtnState = mcButtonState.Normal;
+                    if (m_nextBtnState != McButtonState.Inactive) m_nextBtnState = McButtonState.Normal;
                 }
-                else if (m_nextBtnState != mcButtonState.Inactive) 
-                    m_nextBtnState = mcButtonState.Hot; 
+                else if (m_nextBtnState != McButtonState.Inactive) 
+                    m_nextBtnState = McButtonState.Hot; 
 			
                 if (oldNextMonthState != m_nextBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(), m_nextBtnState, McHeaderButtons.NextMonth, m_nextBtnRect); 
             }
 			if (m_yearSelector)
 			{
 				// If not within left scroll button, make sure its not pushed
                 if (!prevYearBtnRgn.IsVisible(mouseLocation))
                 {
-                    if (m_prevYearBtnState != mcButtonState.Inactive) m_prevYearBtnState = mcButtonState.Normal;
+                    if (m_prevYearBtnState != McButtonState.Inactive) m_prevYearBtnState = McButtonState.Normal;
                 }
-                else if (m_prevYearBtnState != mcButtonState.Inactive) 
-                    m_prevYearBtnState = mcButtonState.Hot;
+                else if (m_prevYearBtnState != McButtonState.Inactive) 
+                    m_prevYearBtnState = McButtonState.Hot;
 
                 if (oldPrevYearState != m_prevYearBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_prevYearBtnState, mcHeaderButtons.PreviousYear, m_prevYearBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(), m_prevYearBtnState, McHeaderButtons.PreviousYear, m_prevYearBtnRect); 
           
 						
 				// If not within right scroll button, make sure its not pushed
                 if (!nextYearBtnRgn.IsVisible(mouseLocation))
                 {
-                    if (m_nextYearBtnState != mcButtonState.Inactive) m_nextYearBtnState = mcButtonState.Normal;
+                    if (m_nextYearBtnState != McButtonState.Inactive) m_nextYearBtnState = McButtonState.Normal;
                 }
-                else if (m_nextYearBtnState != mcButtonState.Inactive) 
-                    m_nextYearBtnState = mcButtonState.Hot;
+                else if (m_nextYearBtnState != McButtonState.Inactive) 
+                    m_nextYearBtnState = McButtonState.Hot;
 
                 if (oldNextYearState != m_nextYearBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_nextYearBtnState, mcHeaderButtons.NextYear, m_nextYearBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(), m_nextYearBtnState, McHeaderButtons.NextYear, m_nextYearBtnRect); 
           
             }
 
@@ -505,15 +505,15 @@ namespace Pabo.Calendar
 				minMonth = m_calendar.MinDate.Year.ToString()+"-"+m_calendar.MinDate.Month.ToString();
 				maxMonth = m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString();
 				
-				if ((minMonth == currentMonth) && (m_prevBtnState != mcButtonState.Pushed))
-					m_prevBtnState = mcButtonState.Inactive;
-				else if (m_prevBtnState != mcButtonState.Pushed)
-					m_prevBtnState = mcButtonState.Normal;
+				if ((minMonth == currentMonth) && (m_prevBtnState != McButtonState.Pushed))
+					m_prevBtnState = McButtonState.Inactive;
+				else if (m_prevBtnState != McButtonState.Pushed)
+					m_prevBtnState = McButtonState.Normal;
 
-				if ((maxMonth == currentMonth) && (m_nextBtnState != mcButtonState.Pushed))
-					m_nextBtnState = mcButtonState.Inactive;
-				else if (m_nextBtnState != mcButtonState.Pushed)
-					m_nextBtnState = mcButtonState.Normal;
+				if ((maxMonth == currentMonth) && (m_nextBtnState != McButtonState.Pushed))
+					m_nextBtnState = McButtonState.Inactive;
+				else if (m_nextBtnState != McButtonState.Pushed)
+					m_nextBtnState = McButtonState.Normal;
 							
 			}
 			if (m_yearSelector)
@@ -526,29 +526,29 @@ namespace Pabo.Calendar
 				days = DateTime.DaysInMonth(m_calendar.MaxDate.Year,m_calendar.MaxDate.Month); 
 				DateTime maxDate = DateTime.Parse(m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString()+"-"+days.ToString());
 				
-				if ( (DateTime.Compare(currentDate.AddYears(-1),minDate)<0) && (m_prevYearBtnState != mcButtonState.Pushed))  
-					m_prevYearBtnState = mcButtonState.Inactive;
-				else if (m_prevYearBtnState != mcButtonState.Pushed)
-					m_prevYearBtnState = mcButtonState.Normal;
+				if ( (DateTime.Compare(currentDate.AddYears(-1),minDate)<0) && (m_prevYearBtnState != McButtonState.Pushed))  
+					m_prevYearBtnState = McButtonState.Inactive;
+				else if (m_prevYearBtnState != McButtonState.Pushed)
+					m_prevYearBtnState = McButtonState.Normal;
 
-				if ( (DateTime.Compare(currentDate.AddYears(1),maxDate)>0) && (m_nextYearBtnState != mcButtonState.Pushed))  
-					m_nextYearBtnState = mcButtonState.Inactive;
-				else if (m_nextYearBtnState != mcButtonState.Pushed)
-					m_nextYearBtnState = mcButtonState.Normal;
+				if ( (DateTime.Compare(currentDate.AddYears(1),maxDate)>0) && (m_nextYearBtnState != McButtonState.Pushed))  
+					m_nextYearBtnState = McButtonState.Inactive;
+				else if (m_nextYearBtnState != McButtonState.Pushed)
+					m_nextYearBtnState = McButtonState.Normal;
 			}
 
 			
 			if (m_monthSelector)
 			{
 
-                DrawButton(e, m_prevBtnState, mcHeaderButtons.PreviousMonth, m_prevBtnRect);
-                DrawButton(e, m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect);   
+                DrawButton(e, m_prevBtnState, McHeaderButtons.PreviousMonth, m_prevBtnRect);
+                DrawButton(e, m_nextBtnState, McHeaderButtons.NextMonth, m_nextBtnRect);   
             }
 			if (m_yearSelector)
 			{
 
-                DrawButton(e, m_prevYearBtnState, mcHeaderButtons.PreviousYear, m_prevYearBtnRect);
-                DrawButton(e, m_nextYearBtnState, mcHeaderButtons.NextYear, m_nextYearBtnRect);
+                DrawButton(e, m_prevYearBtnState, McHeaderButtons.PreviousYear, m_prevYearBtnRect);
+                DrawButton(e, m_nextYearBtnState, McHeaderButtons.NextYear, m_nextYearBtnRect);
      
             }
 				
@@ -565,7 +565,7 @@ namespace Pabo.Calendar
 		#endregion
 
 
-        private void DrawButton(Graphics e, mcButtonState state,mcHeaderButtons button,Rectangle rect)
+        private void DrawButton(Graphics e, McButtonState state,McHeaderButtons button,Rectangle rect)
         {
             Bitmap image = null;
             int x = 0;
@@ -578,11 +578,11 @@ namespace Pabo.Calendar
 
                 if (m_calendar.Enabled)
                 {
-                    if (state == mcButtonState.Hot)
+                    if (state == McButtonState.Hot)
                         element = VisualStyleElement.Button.PushButton.Hot;
-                    else if (state == mcButtonState.Inactive)
+                    else if (state == McButtonState.Inactive)
                         element = VisualStyleElement.Button.PushButton.Disabled;
-                    else if (state == mcButtonState.Pushed)
+                    else if (state == McButtonState.Pushed)
                         element = VisualStyleElement.Button.PushButton.Pressed;
                 }
                 else element = VisualStyleElement.Button.PushButton.Disabled;
@@ -591,28 +591,28 @@ namespace Pabo.Calendar
                 renderer.DrawBackground(e, rect);
                 switch (button)
                 {
-                    case mcHeaderButtons.PreviousMonth:
+                    case McHeaderButtons.PreviousMonth:
                     {
                         image = m_prevMonthVs;
                         x = rect.Left + 5;
                         y = rect.Top + 5;
                         break;
                     }
-                    case mcHeaderButtons.PreviousYear:
+                    case McHeaderButtons.PreviousYear:
                     {
                         image = m_prevYearVs;
                         x = rect.Left + 4;
                         y = rect.Top + 5;
                         break;
                     }
-                    case mcHeaderButtons.NextMonth:
+                    case McHeaderButtons.NextMonth:
                     {
                         image = m_nextMonthVs;
                         x = rect.Right - 13;
                         y = rect.Top + 5;
                         break;
                     }
-                    case mcHeaderButtons.NextYear:
+                    case McHeaderButtons.NextYear:
                     {
                         image = m_nextYearVs;
                         x = rect.Right - 16; 
@@ -622,7 +622,7 @@ namespace Pabo.Calendar
                 
                 }
                 
-                if ((m_calendar.Enabled) && (state!=mcButtonState.Inactive))  
+                if ((m_calendar.Enabled) && (state!=McButtonState.Inactive))  
                     e.DrawImageUnscaled(image, new Point(x,y));
                 else
                     ControlPaint.DrawImageDisabled(e, image, x, y, Color.Transparent);
@@ -633,47 +633,47 @@ namespace Pabo.Calendar
                 ButtonState btnState = ButtonState.Normal;
                 if (m_calendar.Enabled)
                 {
-                    if (state == mcButtonState.Hot)
+                    if (state == McButtonState.Hot)
                         btnState = ButtonState.Normal;
-                    else if (state == mcButtonState.Inactive)
+                    else if (state == McButtonState.Inactive)
                         btnState = ButtonState.Inactive;
-                    else if (state == mcButtonState.Pushed)
+                    else if (state == McButtonState.Pushed)
                         btnState = ButtonState.Pushed;
                 }
                 else btnState = ButtonState.Inactive;
 
                 switch (button)
                 {
-                    case mcHeaderButtons.PreviousMonth:
+                    case McHeaderButtons.PreviousMonth:
                     {
                         ControlPaint.DrawScrollButton(e, rect, ScrollButton.Left, btnState);
                         break;
                     }
-                    case mcHeaderButtons.NextMonth:
+                    case McHeaderButtons.NextMonth:
                     {
                         ControlPaint.DrawScrollButton(e, rect, ScrollButton.Right, btnState);
                         break;
                     }
-                    case mcHeaderButtons.NextYear:
+                    case McHeaderButtons.NextYear:
                     {
 
                         ControlPaint.DrawButton(e, rect, btnState);
-                        if (state == mcButtonState.Pushed)
+                        if (state == McButtonState.Pushed)
                             corr = 1;
-                        if ((m_calendar.Enabled) && (m_nextYearBtnState != mcButtonState.Inactive))
+                        if ((m_calendar.Enabled) && (m_nextYearBtnState != McButtonState.Inactive))
                             e.DrawImage(m_nextYear, new Point(rect.Left + 3, rect.Top + 2 + corr));
                         else
                             e.DrawImage(m_nextYearDisabled, new Point(rect.Left + 3, rect.Top + 2 + corr));
                 
                         break;
                     }
-                    case mcHeaderButtons.PreviousYear:
+                    case McHeaderButtons.PreviousYear:
                     {
 
                         ControlPaint.DrawButton(e, rect, btnState);
-                        if (state == mcButtonState.Pushed)
+                        if (state == McButtonState.Pushed)
                             corr = 1;
-                        if ((m_calendar.Enabled) && (m_prevYearBtnState != mcButtonState.Inactive))
+                        if ((m_calendar.Enabled) && (m_prevYearBtnState != McButtonState.Inactive))
                             e.DrawImage(m_prevYear, new Point(rect.Left, rect.Top + 2 + corr));
                         else
                             e.DrawImage(m_prevYearDisabled, new Point(rect.Left, rect.Top + 2 + corr));  

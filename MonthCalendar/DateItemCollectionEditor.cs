@@ -74,14 +74,13 @@ namespace Pabo.Calendar
 			//m_calendar = originalControl;
 
 			object returnObject = base.EditValue(context, provider, value);
-			
-			DateItemCollection collection = returnObject as DateItemCollection; 
-			if (collection !=null)
-			{
-				collection.ModifiedEvent();
-			}
-			
-			return returnObject;
+
+            if (returnObject is DateItemCollection collection)
+            {
+                collection.ModifiedEvent();
+            }
+
+            return returnObject;
 		}
 		
 

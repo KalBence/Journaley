@@ -319,9 +319,8 @@ namespace Pabo.Calendar
 				if (m_backColor1!=value)
 				{
 					m_backColor1 = value;
-					if (PropertyChanged!=null)
-						PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.BackColor1));   
-					m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this, new FooterPropertyEventArgs(mcFooterProperty.BackColor1));
+                    m_calendar.Invalidate();
 				}
 			}
 		}
@@ -380,9 +379,8 @@ namespace Pabo.Calendar
 				{
 					m_font = value;
 					m_calendar.DoLayout();
-					if (PropertyChanged!=null)
-						PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Font));   
-					m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this, new FooterPropertyEventArgs(mcFooterProperty.Font));
+                    m_calendar.Invalidate();
 				}
 			}
 		}
