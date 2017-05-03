@@ -12,6 +12,9 @@ namespace Journaley.Test
     [TestClass()]
     public class JournaleyPListTest
     {
+        /// <summary>
+        /// Test that the Value property gets the good value
+        /// </summary>
         [TestMethod()]
         public void PListRealConstructor()
         {
@@ -19,9 +22,12 @@ namespace Journaley.Test
 
             PListReal pListReal = new PListReal(value);
 
-            Assert.AreEqual(pListReal.Value, value);
+            Assert.AreEqual(value, pListReal.Value);
         }
 
+        /// <summary>
+        /// Test Equals method
+        /// </summary>
         [TestMethod()]
         public void PListRealEquals()
         {

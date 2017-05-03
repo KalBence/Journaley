@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 using Journaley.Core.Models;
+using Moq;
 
 namespace Journaley.Test
 {
