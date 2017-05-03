@@ -8,22 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Journaley.Test
-{/*
-    [TestClass()]
-    public class SelectionAreaTest
-    {
-        /// <summary>
-        /// Test the default behavior of toString
-        /// </summary>
-        [TestMethod()]
-        public void ToStringTest()
-        {
-            SelectionArea selectionArea = new SelectionArea();
-
-            Assert.IsTrue((selectionArea.ToString()).Equals("Empty"));
-        }
-    }*/
-
+{
     [TestFixture]
     public class SelectionAreaTest
     {
