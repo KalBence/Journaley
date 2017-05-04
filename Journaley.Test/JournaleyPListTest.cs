@@ -1,5 +1,6 @@
 ﻿using Journaley.Core.PList;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,20 @@ namespace Journaley.Test
             PListReal pListReal = new PListReal(value);
 
             Assert.AreEqual(value, pListReal.Value);
+        }
+
+        /// <summary>
+        /// Test the constructor with moq 
+        /// </summary>
+        [TestMethod()]
+        public void PListRealConstructorTestWithMoq()
+        {
+            decimal value = 5;
+
+            var pListRealMock = new Mock<PListReal>(MockBehavior.Strict);
+            pListRealMock.Setup(s=> s.Value).Returns(value);
+
+            Assert.AreEqual(value, pListRealMock.Object.Value);
         }
 
         /// <summary>
